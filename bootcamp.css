@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 5px solid hsl(203, 91%, 65%);
+  position: fixed;
+  width: 100%;
+  color: #fff;
+  padding: 0.5rem 2rem;
+  align-items: center;
+  background-color: #1b2522;
+  z-index: 1;
+}
+
+.logo {
+  width: 3rem;
+  margin-left: 2rem;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  cursor: pointer;
+}
+
+.list li {
+  margin: 0.5rem 1rem;
+  padding: 0.2rem 0.5rem;
+}
+
+.list li:last-child {
+  background-color: hsl(203, 91%, 65%);
+  border-radius: 10000px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  background-image: url(img/header_image.jpg);
+  background-size: cover;
+  min-height: 100vh;
+  position: relative;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  align-items: center;
+  font-size: 1.5em;
+  position: absolute;
+  top: 45%;
+}
+
+.hero-content button {
+  margin-top: 1rem;
+}
+
+.hero-scroll {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  bottom: 10px;
+}
+
+.btn {
+  border-radius: 10000px;
+  padding: 0.25em 1em;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: inherit;
+}
+
+.btn-primary {
+  background-color: hsl(203, 91%, 65%);
+  color: #fff;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem;
+}
+.curriculum {
+  padding: 0 5rem;
+  padding-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2rem;
+  row-gap: 2rem;
+}
+
+.section-title {
+  font-size: 2em;
+  padding-bottom: 1rem;
+}
+
+.curriculum-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.curriculum-item img {
+  height: 3rem;
+  width: 3rem;
+}
+
+.section-accent {
+  background-color: hsl(203, 91%, 65%);
+  color: #fff;
+}
+
+.free-title {
+  text-transform: uppercase;
+  font-size: 3rem;
+}
+.free-sub-title {
+  word-wrap: break-word;
+  width: 20rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  min-width: 50vw;
+}
+.form label {
+  font-weight: bold;
+}
+
+.form input,
+.form textarea {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin: 0.5rem 0 1.5rem 0;
+}
+
+.form textarea {
+  resize: vertical;
+  max-height: 200px;
+  min-height: 75px;
+}
+
+.btn-square {
+  background-color: hsl(203, 91%, 65%);
+  color: #fff;
+  border-radius: 5px;
+}
