@@ -3,8 +3,20 @@
   padding: 0;
 }
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Montserrat, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
   overflow-x: hidden;
+
+  --title-duration: 500ms;
+  --sub-title-duration: 500ms;
+  --nav-duration: 200ms;
+  --btn-grow-duration: 200ms;
+  --scroll-down-duration: 200ms;
+
+  --sub-title-delay: calc(var(--title-duration) - 200ms);
+  --nav-delay: calc(var(--sub-title-delay) + var(--sub-title-duration));
+  --btn-grow-delay: calc(var(--nav-delay));
+  --scroll-down-delay: calc(var(--nav-delay));
 }
 
 .navbar {
@@ -18,6 +30,8 @@ body {
   align-items: center;
   background-color: #1b2522;
   z-index: 1;
+
+  animation: nav-enter var(--nav-duration) var(--nav-delay) backwards;
 }
 
 .logo {
@@ -34,11 +48,20 @@ body {
 .list li {
   margin: 0.5rem 1rem;
   padding: 0.2rem 0.5rem;
+  transition: 100ms;
+}
+
+.list li:hover {
+  color: hsla(0, 0%, 100%, 0.39);
 }
 
 .list li:last-child {
   background-color: hsl(203, 91%, 65%);
   border-radius: 10000px;
+}
+.list li:last-child:hover {
+  color: #fff;
+  background-color: hsl(203, 81%, 71%);
 }
 
 .header {
@@ -63,6 +86,15 @@ body {
   top: 45%;
 }
 
+.title {
+  animation: title-enter var(--title-duration);
+}
+
+.sub-title {
+  animation: sub-title-enter var(--sub-title-duration) var(--sub-title-delay)
+    backwards;
+}
+
 .hero-content button {
   margin-top: 1rem;
 }
@@ -72,6 +104,12 @@ body {
   height: 2rem;
   position: absolute;
   bottom: 10px;
+  /* calc(var(--scroll-down-duration) + var(--scroll-down-delay)) */
+  /* scroll-down-enter var(--scroll-down-duration) var(--scroll-down-delay)
+      backwards; */
+  animation: scroll-down-bounce 1s alternate infinite linear,
+    scroll-down-enter var(--scroll-down-duration) var(--scroll-down-delay)
+      backwards;
 }
 
 .btn {
@@ -86,6 +124,7 @@ body {
 .btn-primary {
   background-color: hsl(203, 91%, 65%);
   color: #fff;
+  transition: all 500ms;
 }
 
 .section {
@@ -119,6 +158,10 @@ body {
   width: 3rem;
 }
 
+.curriculum-item:hover img {
+  animation: shake 100ms;
+}
+
 .section-accent {
   background-color: hsl(203, 91%, 65%);
   color: #fff;
@@ -148,6 +191,8 @@ body {
   border-radius: 5px;
   border: 1px solid #ccc;
   margin: 0.5rem 0 1.5rem 0;
+  outline: none;
+  transition: 500ms;
 }
 
 .form textarea {
@@ -156,8 +201,190 @@ body {
   min-height: 75px;
 }
 
+.form input:focus,
+.form textarea:focus,
+.form input:active,
+.form textarea:active {
+  border-color: hsl(203, 91%, 65%);
+}
+
 .btn-square {
   background-color: hsl(203, 91%, 65%);
   color: #fff;
   border-radius: 5px;
+}
+
+.pricing-cards-container {
+  display: flex;
+  justify-content: center;
+}
+
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border: 0.1rem solid #666;
+  padding: 0.5rem;
+  color: black;
+  background-color: hsl(202, 85%, 92%);
+  border-radius: 0.25em;
+  margin: 1rem 0;
+  transition: transform 100ms;
+}
+
+.pricing-card:hover {
+  transform: scale(1.05);
+}
+
+.pricing-card.accent {
+  background-color: white;
+  margin: 0;
+}
+
+.pricing-card:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+  transform-origin: right;
+}
+
+.pricing-card:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: none;
+  transform-origin: left;
+}
+
+.price-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.plan-name {
+  font-size: 1.5em;
+  margin-bottom: 0.5rem;
+}
+
+.plan-price {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.plan-price::after {
+  content: '/mo';
+  font-size: 0.5em;
+  color: #777;
+}
+
+.plan-features {
+  line-height: 1.5;
+  text-align: center;
+}
+
+.feature {
+  color: #555;
+}
+
+.feature.inactive {
+  text-decoration: line-through;
+  color: #777;
+}
+
+/* When width is less than 675px apply below style. */
+@media (max-width: 675px) {
+  .header {
+    background-position-x: 60%;
+  }
+
+  .curriculum {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-cards-container {
+    flex-wrap: wrap;
+  }
+
+  .pricing-card,
+  .pricing-card.accent {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+
+  .pricing-card:first-child,
+  .pricing-card:last-child {
+    border-radius: 0.25em;
+    border: 0.1rem solid #666;
+    transform-origin: center;
+  }
+
+  .pricing-card:last-child {
+    margin-bottom: 0;
+  }
+
+  .feature.inactive {
+    display: none;
+  }
+}
+
+.btn-grow {
+  animation: btn-grow-enter var(--btn-grow-duration) var(--btn-grow-delay)
+    backwards;
+}
+
+.btn-grow:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px 1px black;
+}
+
+@keyframes shake {
+  25% {
+    transform: rotate(5deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+}
+
+@keyframes scroll-down-bounce {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes title-enter {
+  from {
+    transform: translateX(-100vw);
+  }
+}
+
+@keyframes sub-title-enter {
+  from {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes nav-enter {
+  from {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes btn-grow-enter {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes scroll-down-enter {
+  from {
+    transform: scale(0) rotate(180deg);
+  }
 }
